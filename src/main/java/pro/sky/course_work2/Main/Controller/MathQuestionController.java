@@ -12,18 +12,17 @@ import pro.sky.course_work2.Main.model.Question;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/exam")
-
-public class JavaQuestionController {
+@RequestMapping("/math")
+public class MathQuestionController {
 
 
     private final QuestionService questionService;
 
-    public JavaQuestionController(@Qualifier("javaQuestionServiceImpl") QuestionService questionService) {
+    public MathQuestionController(@Qualifier("mathQuestionServiceImpl")QuestionService questionService) {
         this.questionService = questionService;
     }
 
-    @RequestMapping( "/java")
+    @RequestMapping("/java")
     public Collection<Question> getAll() {
         return questionService.getAll();
     }
@@ -35,9 +34,8 @@ public class JavaQuestionController {
     }
 
     @GetMapping(path = "/java/remove")
-    public Question remove(@RequestParam("question")String question, @RequestParam("answer") String answer) {
+    public Question remove(@RequestParam("question") String question, @RequestParam("answer") String answer) {
         Question removableQuestion = new Question(question, answer);
-        return questionService.remove( removableQuestion);
+        return questionService.remove(removableQuestion);
     }
-
 }

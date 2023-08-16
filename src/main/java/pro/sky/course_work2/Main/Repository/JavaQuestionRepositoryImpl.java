@@ -7,40 +7,33 @@ import java.util.*;
 
 @Repository
 public class JavaQuestionRepositoryImpl implements QuestionRepository {
-    Map<Question, Question> reposQuestAndAnswer= new HashMap<>();
+    //    Map<String, String> questionAndAnswerMap = new HashMap<>();
+    Set<Question> questionSet = new HashSet<>();
 
-    List<String> mainListWisQuestionAndAnswer = new ArrayList<>();
+//    public Map<String, String> getQuestionMap() {
+//        return questionAndAnswerMap;
+//    }
 
-
-    @Override
-    public Question add(Question question, Question answer) {
-
-        return null;
+    public Set<Question> getQuestionSet() {
+        return questionSet;
     }
 
     @Override
     public Question add(Question question) {
-        return null;
+//        questionAndAnswerMap.put(question.getQuestion(), question.getAnswer());
+        questionSet.add(question);
+        return question;
     }
 
     @Override
-    public Question remove(Question question) {
-        return null;
-    }
-
-    @Override
-    public Collection<Question> getAll() {
-
-        return null;
-    }
-
-    @Override
-    public Question getRandomQuestions() {
-        return null;
-    }
-
-    private List<String> ddd() {
-       return mainListWisQuestionAndAnswer.add(String cddcd = "ggggg");
-
+    public void remove(Question question) {
+//        questionAndAnswerMap.remove(question.getQuestion());
+        questionSet.remove(question);
     }
 }
+
+
+
+
+
+
