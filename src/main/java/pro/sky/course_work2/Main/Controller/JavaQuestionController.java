@@ -1,6 +1,5 @@
 package pro.sky.course_work2.Main.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,7 @@ public class JavaQuestionController {
         this.questionService = questionService;
     }
 
-    @RequestMapping( "/java")
+    @RequestMapping("/java")
     public Collection<Question> getAll() {
         return questionService.getAll();
     }
@@ -35,9 +34,9 @@ public class JavaQuestionController {
     }
 
     @GetMapping(path = "/java/remove")
-    public Question remove(@RequestParam("question")String question, @RequestParam("answer") String answer) {
+    public Question remove(@RequestParam("question") String question, @RequestParam("answer") String answer) {
         Question removableQuestion = new Question(question, answer);
-        return questionService.remove( removableQuestion);
+        return questionService.remove(removableQuestion);
     }
 
 }
