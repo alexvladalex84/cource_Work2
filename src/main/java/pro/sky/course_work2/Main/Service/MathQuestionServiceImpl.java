@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 import pro.sky.course_work2.Main.Repository.QuestionRepository;
 import pro.sky.course_work2.Main.model.Question;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MathQuestionServiceImpl implements QuestionService {
@@ -44,10 +41,9 @@ public class MathQuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Collection<Question> getRandomQuestions() {
+    public Question getRandomQuestions() {
+        Random random = new Random();
         List<Question> questionList = new ArrayList<>(mathQuestionRepository.getQuestionSet());
-        Collections.shuffle(questionList);
-
-        return questionList;
+        return questionList.get(random.nextInt(0, questionList.size()));
     }
 }

@@ -11,7 +11,7 @@ import pro.sky.course_work2.Main.model.Question;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/exam")
+@RequestMapping("/java")
 
 public class JavaQuestionController {
 
