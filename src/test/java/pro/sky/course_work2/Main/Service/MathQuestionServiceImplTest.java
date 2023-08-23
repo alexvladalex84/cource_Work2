@@ -15,9 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class JavaQuestionServiceImplTest {
+class MathQuestionServiceImplTest {
+
     @InjectMocks
-    private JavaQuestionServiceImpl questionService;
+    private MathQuestionServiceImpl questionService;
     @Mock
     private QuestionRepository questionRepository;
 

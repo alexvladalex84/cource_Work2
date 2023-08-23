@@ -1,35 +1,79 @@
 package pro.sky.course_work2.Main.Service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import pro.sky.course_work2.Main.Exception.AmountQuestionException;
 import pro.sky.course_work2.Main.model.Question;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    private final QuestionService questionService;
+    private final QuestionService javaQuestionServiceImpl;
+    private final QuestionService mathQuestionServiceImpl;
 
-    public ExaminerServiceImpl(QuestionService questionService) {
-        this.questionService = questionService;
+
+    public ExaminerServiceImpl(@Qualifier("javaQuestionServiceImpl") QuestionService javaQuestionServiceImpl
+            , @Qualifier("mathQuestionServiceImpl") QuestionService mathQuestionServiceImpl) {
+        this.javaQuestionServiceImpl = javaQuestionServiceImpl;
+        this.mathQuestionServiceImpl = mathQuestionServiceImpl;
     }
 
+//    @Override
+//
+//    public Collection<Question> getQuestionsJava(int amount) {
+//        if (amount > javaQuestionServiceImpl.getAll().size()) {
+//            throw new AmountQuestionException("Введенное значение превышает колличество вопросов в коллекции");
+//        }
+//        Set<Question> questionList1 = new HashSet<>();
+//        int counter = 1;
+//        for (Question q : javaQuestionServiceImpl.getRandomQuestions()) {
+//            if (counter <= amount) {
+//                questionList1.add(q);
+//            }
+//            counter++;
+//        }
+//
+//
+//        return questionList1;
+//    }
+//
+//    @Override
+//
+//    public Collection<Question> getQuestionsMath(int amount) {
+//        if (amount > mathQuestionServiceImpl.getAll().size()) {
+//            throw new AmountQuestionException("Введенное значение превышает колличество вопросов в коллекции");
+//        }
+//        Set<Question> questionList1 = new HashSet<>();
+//        int counter = 1;
+//        for (Question q : mathQuestionServiceImpl.getRandomQuestions()) {
+//            if (counter <= amount) {
+//                questionList1.add(q);
+//            }
+//            counter++;
+//        }
+//
+//
+//        return questionList1;
+//    }
+//
     @Override
+
     public Collection<Question> getQuestions(int amount) {
-        if (amount > questionService.getAll().size()) {
+        if (amount > mathQuestionServiceImpl.getAll().size() + javaQuestionServiceImpl.getAll().size()) {
             throw new AmountQuestionException("Введенное значение превышает колличество вопросов в коллекции");
         }
-        Set<Question> questionList1 = new HashSet<>();
-        int counter = 1;
-        for (Question q : questionService.getRandomQuestions()) {
-            if (counter <= amount ) {
-                questionList1.add(q);
-            }
-            counter++;
+        Set<Question> setList = new HashSet<>();
+        Random random = new Random();
+        while (setList.size() < amount) {
+            if (random.nextBoolean()) {
+                setList.add(javaQuestionServiceImpl.getRandomQuestions());
+            } else setList.add(mathQuestionServiceImpl.getRandomQuestions());
         }
 
-
-        return questionList1;
+        return setList;
     }
 }

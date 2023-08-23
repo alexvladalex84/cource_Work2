@@ -1,6 +1,5 @@
 package pro.sky.course_work2.Main.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,7 @@ public class MathQuestionController {
 
     private final QuestionService questionService;
 
-    public MathQuestionController(@Qualifier("mathQuestionServiceImpl")QuestionService questionService) {
+    public MathQuestionController(@Qualifier("mathQuestionServiceImpl") QuestionService questionService) {
         this.questionService = questionService;
     }
 

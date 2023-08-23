@@ -7,35 +7,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Repository
-public class JavaQuestionRepositoryImpl implements QuestionRepository {
-    //    Map<String, String> questionAndAnswerMap = new HashMap<>();
+public class MathQuestionRepositoryImpl implements QuestionRepository {
     Set<Question> questionSet = new HashSet<>();
 
-    //    public Map<String, String> getQuestionMap() {
-//        return questionAndAnswerMap;
-//    }
     @Override
     public Set<Question> getQuestionSet() {
-
         return questionSet;
     }
 
     @Override
     public Question add(Question question) {
-//        questionAndAnswerMap.put(question.getQuestion(), question.getAnswer());
         questionSet.add(question);
         return question;
     }
 
     @Override
     public void remove(Question question) {
-//        questionAndAnswerMap.remove(question.getQuestion());
         questionSet.remove(question);
+
     }
 }
-
-
-
-
-
-
