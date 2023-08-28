@@ -48,13 +48,13 @@ class ExaminerServiceImplTest {
         int amount = 0;
 
 // подготовка ожидаемого результата
-//        when(javaQuestionService.getAll()).thenReturn(Set.of(quest1, quest2, quest3, quest4, quest5));
-//        when(mathQuestionService.getAll()).thenReturn(Set.of(quest1, quest2, quest3, quest4));
+        when(javaQuestionService.getAll()).thenReturn(Set.of(quest1, quest2, quest3, quest4, quest5));
+        when(mathQuestionService.getAll()).thenReturn(Set.of(quest1, quest2, quest3, quest4));
         Set<Question> expectedList = new HashSet<>(Set.of(quest2, quest3, quest4, quest5));
 
         Collection<Question> actualList = examinerService.getQuestions(amount);
-//        assertEquals(expectedList, actualList);
-        assertNotEquals(expectedList,actualList);
+        assertEquals(expectedList, actualList);
+//        assertNotEquals(expectedList,actualList);
 //        verify(javaQuestionService).getRandomQuestions();
 //        verify(mathQuestionService).getRandomQuestions();
     }
@@ -74,8 +74,8 @@ class ExaminerServiceImplTest {
 
         int amount = 5;
         // подготовка ожидаемого результата
-//        when(javaQuestionService.getAll()).thenReturn(Set.of(quest1, quest2));
-//        when(mathQuestionService.getAll()).thenReturn(Set.of( quest3,quest1));
+        when(javaQuestionService.getAll()).thenReturn(Set.of(quest1, quest2));
+        when(mathQuestionService.getAll()).thenReturn(Set.of( quest3,quest1));
 //        when(javaQuestionService.getRandomQuestions()).thenReturn(quest1)
 //                .thenReturn(quest2)
 //                .thenReturn(quest3);
@@ -91,8 +91,8 @@ class ExaminerServiceImplTest {
                 () -> examinerService.getQuestions(amount));
         assertEquals(expectedErrorMessage, exception.getMessage());
 
-//        verify(javaQuestionService).getAll();
-//        verify(mathQuestionService).getAll();
+        verify(javaQuestionService).getAll();
+        verify(mathQuestionService).getAll();
 //        verify(javaQuestionService).getRandomQuestions();
 //        verify(mathQuestionService).getRandomQuestions();
     }
